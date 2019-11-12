@@ -1,0 +1,87 @@
+package pomocnaKlasa;
+
+import java.util.Scanner;
+
+public class PomocnaKlasa {
+
+	static Scanner sc = new Scanner(System.in);
+	
+	public static String ocitajTekst(){
+		String tekst = "";
+		while(tekst == null || tekst.equals(""))
+			tekst = sc.nextLine();
+		
+		return tekst;
+	}
+		
+	public static int ocitajCeoBroj(){
+		while (sc.hasNextInt()==false) {
+			System.out.println("GRESKA - Pogresno unsesena vrednost, pokusajte ponovo: ");
+			sc.nextLine();
+		}
+		int ceoBroj = sc.nextInt();
+		sc.nextLine(); 
+		return ceoBroj;
+	}
+		
+	public static float ocitajRealanBroj(){
+
+		while (sc.hasNextFloat()==false) {
+			System.out.println("GRESKA - Pogresno unsesena vrednost, pokusajte ponovo: ");
+			sc.nextLine();
+		}
+		float realanBroj = sc.nextFloat();
+		sc.nextLine(); 
+		return realanBroj;
+	}
+		
+	public static char ocitajKarakter(){
+		
+		String text;
+		while ( (text=sc.next())==null || text.length()!=1) {
+			System.out.println("GRESKA - Pogresno unsesena vrednost za karakter, pokusajte ponovo: ");
+			sc.nextLine();
+		}
+		char karakter = text.charAt(0);
+		return karakter;
+	}
+	
+	public static char ocitajOdlukuOPotvrdi(String tekst){
+		System.out.println("Da li zelite " + tekst + " [Y/N]:");
+		char odluka = ' ';
+		while( !(odluka == 'Y' || odluka == 'N') ){
+			odluka = ocitajKarakter();
+			if (!(odluka == 'Y' || odluka == 'N')) {
+				System.out.println("Opcije su Y ili N");
+			}
+		}
+		return odluka;
+	}
+	
+	static boolean isInteger(String s){
+		try {
+			Integer.parseInt(s);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	static boolean isDouble(String s){
+		try {
+			Double.parseDouble(s);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+	
+	static boolean isBoolean(String s){
+		try {
+			Boolean.parseBoolean(s);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+}
