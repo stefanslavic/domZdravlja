@@ -8,17 +8,27 @@ public class Doktor {
 	protected String ime;
 	protected String prezime;
 	protected String zvanje;
-	
-//	jedan DOKTOR moze da ima vise PACIJENATA
-//	Svi pacijenti za jednog doktora
+/*	
+	Jedan DOKTOR moze da ima vise PACIJENATA
+	Svi pacijenti za jednog doktora
+*/
 	protected ArrayList<Pacijent> listaPacijenata = new ArrayList<Pacijent>();
-	
-//	DOKTOR moze da ima vise PREGLEDA, a ne mora da ima ni jedan
-//	Svi pregledi za jednog doktora
+
+/*
+	DOKTOR moze da ima vise PREGLEDA, a ne mora da ima ni jedan
+	Svi pregledi za jednog doktora
+*/
 	protected ArrayList<Pregled> listaPregleda = new ArrayList<Pregled>();
 	
 	public Doktor() {
 		super();
+	}
+
+	public Doktor(int id, String ime, String prezime) {
+		super();
+		this.id = id;
+		this.ime = ime;
+		this.prezime = prezime;
 	}
 
 	public Doktor(int id, String ime, String prezime, String specijalnost) {
@@ -83,7 +93,6 @@ public class Doktor {
 	public void setListaPregleda(ArrayList<Pregled> listaPregleda) {
 		this.listaPregleda = listaPregleda;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {

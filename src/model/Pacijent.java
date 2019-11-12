@@ -11,13 +11,24 @@ public class Pacijent {
 	protected String simptom;
 	protected String mob; //Medicinska Oblast Bolesti - upisujes kod kog lekara ide, odnosno na osnovu kod simptoma on treba da ide kod lekara
 	
-//	PACIJENT moze da ima vise DOKTORA
-//	Svi Doktori za jednog pacijenta
+/*
+	PACIJENT moze da ima vise DOKTORA
+	Svi Doktori za jednog pacijenta
+ */
 	protected ArrayList<Doktor> listaDoktora = new ArrayList<Doktor>();
-	
-//	PACIJENT moze da ima vise PREGLEDA, a ne mora da ima ni jedan
-//	Svi pregledi za jednog pacijenta
+
+/*
+	PACIJENT moze da ima vise PREGLEDA, a ne mora da ima ni jedan
+	Svi pregledi za jednog pacijenta
+*/
 	protected ArrayList<Pregled> listaPregleda = new ArrayList<Pregled>();
+
+	public Pacijent(int id, String ime, String prezime) {
+		super();
+		this.id = id;
+		this.ime = ime;
+		this.prezime = prezime;
+	}
 
 	public Pacijent(int id, String ime, String prezime, String jmbg, String simptom, String mob) {
 		this.id = id;

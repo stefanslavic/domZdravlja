@@ -6,7 +6,6 @@ public class PomocnaKlasa {
 
 	static Scanner sc = new Scanner(System.in);
 	
-	//citanje promenljive String
 	public static String ocitajTekst(){
 		String tekst = "";
 		while(tekst == null || tekst.equals(""))
@@ -15,18 +14,16 @@ public class PomocnaKlasa {
 		return tekst;
 	}
 		
-	//citanje promenljive integer
 	public static int ocitajCeoBroj(){
 		while (sc.hasNextInt()==false) {
 			System.out.println("GRESKA - Pogresno unsesena vrednost, pokusajte ponovo: ");
 			sc.nextLine();
 		}
 		int ceoBroj = sc.nextInt();
-		sc.nextLine(); //cisti sve sa ulaza sto nije broj ili ostatak teste posla broja
+		sc.nextLine(); 
 		return ceoBroj;
 	}
 		
-	//citanje promenljive double
 	public static float ocitajRealanBroj(){
 
 		while (sc.hasNextFloat()==false) {
@@ -34,11 +31,10 @@ public class PomocnaKlasa {
 			sc.nextLine();
 		}
 		float realanBroj = sc.nextFloat();
-		sc.nextLine(); //cisti sve sa ulaza sto nije broj ili ostatak teste posla broja
+		sc.nextLine(); 
 		return realanBroj;
 	}
 		
-	//citanje promenljive char
 	public static char ocitajKarakter(){
 		
 		String text;
@@ -50,7 +46,6 @@ public class PomocnaKlasa {
 		return karakter;
 	}
 	
-	//citanje promenljive char
 	public static char ocitajOdlukuOPotvrdi(String tekst){
 		System.out.println("Da li zelite " + tekst + " [Y/N]:");
 		char odluka = ' ';
@@ -89,5 +84,4 @@ public class PomocnaKlasa {
 		}
 		return true;
 	}
-
 }

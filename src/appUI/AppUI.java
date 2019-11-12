@@ -8,13 +8,11 @@ public class AppUI {
 	public static void main(String[] args) {
 
 		try {
-//			otvaranje konekcije sa bazom
 			ConnectionManager.open();
 		}catch (Exception ex) {
 			System.out.println("Neuspesna konekcija na bazu!");
 			
 			ex.printStackTrace();
-//			u slucaju neuspesne konecije gasi aplikaciju
 			return;
 		}
 		
@@ -37,7 +35,6 @@ public class AppUI {
 			case 3:
 				PregledUI.meniPreglediUI();
 				break;
-
 			default:
 				break;
 			}
@@ -50,14 +47,13 @@ public class AppUI {
 		}
 	}
 	
-	
 	public static void ispisiTekstOsnovneOpcie () {
 		System.out.println("Dom Zdravlja - Osnovne opcije");
 		System.out.println("\t1. Rad sa pacijentima");
 		System.out.println("\t2. Rad sa doktorima");
 		System.out.println("\t3. Rad sa pregledima");
+		System.out.println("\t4. Rad sa kontrolama");
 		System.out.println("=============================");
 		System.out.println("\t0. IZLAZ");
 	}
-
 }

@@ -8,13 +8,13 @@ import java.util.List;
 import model.Doktor;
 import model.Pacijent;
 
-//CRUD operacije nad veznom tabelom Pregled
+
 public class PregledDAO {
 	
-//=========================================================================================================
+//CRUD OPERATION
+	
 	public static List<Pacijent> getPacijentiByDoktorID (int doktorID) throws Exception {
 		
-//		pravis praznu listu gde ces da napunis sve pacijente koje ce doktor sa prosledjenim ID da pregleda
 		List<Pacijent> listaPacijenataKojeCekaDoktor = new ArrayList<Pacijent>();
 		
 		Statement stmt = null;
@@ -47,7 +47,6 @@ public class PregledDAO {
 		}
 		return listaPacijenataKojeCekaDoktor;
 	}
-//=========================================================================================================
 	
 	public static List<Doktor> getDoktorByPacijentID (int pacijentID) throws Exception{
 		
@@ -82,10 +81,7 @@ public class PregledDAO {
 		}
 		return listaDoktoraKojePacijentCeka;
 	}
-//=========================================================================================================
-//	ako upises redom id_pacijent pa zatim id_doktor, gde god u programu da koristis ovu metodu, moras tako i parametre da prosledis
-//	ne mozes da ovde ide redosled pacijent ID pa doktor ID, a u UI da radis obrnuto, 
-//	RED SE MORA POSTOVATI
+	
 	public static boolean add (int pacijentID, int doktorID) throws Exception {
 		
 		Statement stmt = null;
@@ -103,8 +99,7 @@ public class PregledDAO {
 			}
 		}
 	}
-//=========================================================================================================
-
+	
 	public static boolean delete (int pacijentID, int doktorID) throws Exception {
 		
 		Statement stmt = null;
@@ -123,6 +118,4 @@ public class PregledDAO {
 			}
 		}
 	}
-//=========================================================================================================
-
-} 
+}

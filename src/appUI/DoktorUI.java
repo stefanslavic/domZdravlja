@@ -8,8 +8,7 @@ import pomocnaKlasa.PomocnaKlasa;
 
 public class DoktorUI {
 
-	
-//================= ISPIS TEKSTA OSNOVNIH OPCIJA ==============================
+//MENU
 	public static void ispisGlavniMeni() {
 			
 		System.out.println("Rad sa doktorima - opcije:");
@@ -18,12 +17,11 @@ public class DoktorUI {
 		System.out.println("\t3. Brisanje podataka o doktoru");
 		System.out.println("\t4. Ispisi sve doktore");
 		System.out.println("\t5. Ispisi podatke o odredjenom doktoru");
+		System.out.println("\t6. Pretraga doktora po zvanju");
 		System.out.println("=======================================================");
 		System.out.println("\t0. IZLAZ");
 	}
-//=============================================================================
 	
-//============================ MENI OPCIJA ====================================	
 	
 	public static void meniDoktorUI () {
 		int odluka = -1;
@@ -54,17 +52,18 @@ public class DoktorUI {
 					System.out.println(doc.vratiTekstualnuReprezentacijuZaIspis());
 				}
 				break;
+			case 6:
+				pretragaPoZvanju();
+				break;
 			default:
 				System.out.println("Nepostojeca komanda!!!");
 				break;
 			}
 		}
 	}
+//CRUD Operation
 	
-//=============================================================================	
-	
-//======================= PRONADJI DOKTORA PO ID ==============================	
-	
+    //Find doctor by ID	
 	public static Doktor findDoctor () {
 		System.out.print("Unesi ID doktora: ");
 		int idDoc = PomocnaKlasa.ocitajCeoBroj();
@@ -80,10 +79,8 @@ public class DoktorUI {
 		}
 		return null;
 	}
-//=============================================================================	
 	
-//=========================== ISPISI SVE DOKTORE ==============================
-	
+	//All doctors
 	public static void ispisiSveDoktore () {
 		
 		try {
@@ -109,10 +106,8 @@ public class DoktorUI {
 			System.out.println("Greska u radu sa bazom!");
 		}
 	}
-//=============================================================================
 	
-//=========================== UNOS NOVOG DOKTORA ==============================
-	
+	//Create new doctor
 	public static void unosNovogDoktora() {
 		try {
 			
@@ -140,10 +135,8 @@ public class DoktorUI {
 			ex.printStackTrace();
 		}
 	}
-//=============================================================================
 	
-//======================= IZMENA PODATKA DOKTORA ==============================
-	
+	//Update doctor
 	public static void izmenaPodatkaODoktoru () {
 		Doktor doktor = findDoctor();
 		if (doktor != null)	{
@@ -170,10 +163,8 @@ public class DoktorUI {
 			}
 		}
 	}
-//=============================================================================
 	
-//======================= BRISANJE PODATKA O DOKTORU ==========================
-	
+	//Delete doctor
 	public static void brisanjePodatkaODoktoru () {
 		Doktor doktor = findDoctor();
 		if (doktor != null) {
@@ -190,5 +181,33 @@ public class DoktorUI {
 			}
 		}
 	}
-//=============================================================================
+	
+	//Search doctor by title
+	public static void pretragaPoZvanju() {
+		System.out.print("Unesite zvanje doktora: ");
+		String str = PomocnaKlasa.ocitajTekst();
+		
+		try {
+			
+			List<Doktor> doktori = DoktorDAO.getDocByTitle(str);
+			System.out.println();
+			System.out.printf("%-10s %-10s %-20s", "ID", "Ime", "Prezime");
+			System.out.println();
+			System.out.println("========== ========== ====================");
+			
+			for (int i = 0; i < doktori.size(); i++) {
+				System.out.printf("%-10s %-10s %-20s", 
+						doktori.get(i).getId(),
+						doktori.get(i).getIme(),
+						doktori.get(i).getPrezime());
+				System.out.println();
+			}
+			System.out.println();
+			System.out.println("Ukupan broj doktora sa zvanjem " + str + " je: " + doktori.size());
+			System.out.println("---------- ---------- -------------------");
+		}catch (Exception ex) {
+			System.out.println("Greska u radu sa bazom!!!");
+			ex.printStackTrace();
+		}
+	}
 }

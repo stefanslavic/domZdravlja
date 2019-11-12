@@ -2,8 +2,10 @@ package model;
 
 public class Pregled {
 
-	//DA BI SE JEDAN PREGLED DESIO MORA DA POSTOJI 
-	//MAKAR JEDAN DOKTOR I JEDAN PACIJENT
+/*
+	DA BI SE JEDAN PREGLED DESIO MORA DA POSTOJI 
+	MAKAR JEDAN DOKTOR I JEDAN PACIJENT
+*/
 	
 	protected Doktor doktor;
 	protected Pacijent pacijent;

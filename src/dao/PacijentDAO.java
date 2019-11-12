@@ -9,6 +9,8 @@ import java.util.List;
 import model.Pacijent;
 
 public class PacijentDAO {
+	
+//CRUD OPERATION
 
 	public static Pacijent getPatientByID(int id) throws Exception {
 		
@@ -53,8 +55,6 @@ public class PacijentDAO {
 		return pacijent;
 	}
 	
-//==================== METODA ZA ISPIS SVIH PACIJENATA ========================
-	
 	public static List<Pacijent> getAll () throws Exception {
 		
 		List<Pacijent> sviPacijenti = new ArrayList<Pacijent>();
@@ -95,9 +95,6 @@ public class PacijentDAO {
 		}
 		return sviPacijenti;
 	}
-//=============================================================================
-	
-//===================== METODA ZA DODAVANJE PACIJENTA =========================
 	
 	public static boolean add (Pacijent pacijent) throws Exception {
 		
@@ -125,9 +122,6 @@ public class PacijentDAO {
 			}
 		}
 	}
-//=============================================================================
-	
-//==================== METODA ZA IZMENU NA OSNOVU ID ==========================
 
 	public static boolean update (Pacijent pacijent) throws Exception {
 		
@@ -156,9 +150,6 @@ public class PacijentDAO {
 			}
 		}
 	}
-//=============================================================================
-	
-//==================== METODA ZA BRISANJE NA OSNOVU ID ========================
 	
 	public static boolean delete (int id) throws Exception {
 		
@@ -178,9 +169,6 @@ public class PacijentDAO {
 			}
 		}
 	}
-//=============================================================================
-	
-//==================== METODA ZA ISPIS PACIJENATA DESC ========================
 	
 	public static List<Pacijent> getAllDesc () throws Exception{
 		
@@ -224,9 +212,7 @@ public class PacijentDAO {
 		}
 		return sviPacijenti;
 		}
-//=============================================================================
 	
-//==================== METODA ZA ISPIS PACIJENATA ASC =========================
 	public static List<Pacijent> getAllAsc () throws Exception{
 		
 		List<Pacijent> sviPacijenti = new ArrayList<Pacijent>();
@@ -269,5 +255,46 @@ public class PacijentDAO {
 		}
 		return sviPacijenti;
 		}
-//=============================================================================
+	
+	public static List<Pacijent> getByPain (String str) throws Exception {
+		
+		List<Pacijent> pacijenti = new ArrayList<Pacijent>();
+		
+		PreparedStatement stmt = null;
+		ResultSet rset = null;
+		
+		try {
+			String sql = "SELECT id_pacijent, ime, prezime FROM pacijent WHERE simptom = ?";
+			
+			stmt = ConnectionManager.getConnection().prepareStatement(sql);
+			int index = 1;
+			stmt.setString(index++, str);
+			
+			rset = stmt.executeQuery();
+			
+			while (rset.next()) {
+				index = 1;
+				
+				int id = rset.getInt(index++);
+				String ime = rset.getString(index++);
+				String prezime = rset.getString(index++);
+				
+				Pacijent pacijent = new Pacijent(id, ime, prezime);
+				pacijenti.add(pacijent);
+			}
+			
+		}finally {
+			try {
+				stmt.close();
+			}catch (Exception ex) {
+				ex.printStackTrace();
+			}
+			try {
+				rset.close();
+			}catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+		return pacijenti;
+	}
 }

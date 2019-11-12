@@ -8,7 +8,8 @@ import model.Pacijent;
 import pomocnaKlasa.PomocnaKlasa;
 
 public class PregledUI {
-//================= ISPIS TEKSTA OSNOVNIH OPCIJA ==============================
+	
+//MENU
 	public static void ispisiGlavniMeni () {
 				
 		System.out.println("Rad sa pregledima - opcije:");
@@ -19,9 +20,7 @@ public class PregledUI {
 		System.out.println("=======================================================");
 		System.out.println("\t0. IZLAZ");
 	}
-//=============================================================================
-			
-//============================ MENI OPCIJA ====================================	
+	
 	public static void meniPreglediUI() {
 		int odluka = -1;
 		while (odluka != 0) {
@@ -51,8 +50,7 @@ public class PregledUI {
 			}
 		}
 	}
-//=============================================================================
-	
+	//
 //========== ISPISI PACIJENTE KOJE DOKTOR TREBA DA PREGLEDA ===================
 /*
 	cilj ove metode je da od korisnika trazimo ID doktora

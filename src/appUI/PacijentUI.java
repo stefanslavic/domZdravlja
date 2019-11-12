@@ -8,7 +8,7 @@ import pomocnaKlasa.PomocnaKlasa;
 
 public class PacijentUI {
 
-//================= ISPIS TEKSTA OSNOVNIH OPCIJA ==============================
+//MENU
 	public static void ispisiGlavniMeni () {
 			
 		System.out.println("Rad sa pacijentima - opcije:");
@@ -18,12 +18,11 @@ public class PacijentUI {
 		System.out.println("\t4. Ispisi sve pacijente");
 		System.out.println("\t5. Ispisi podatke o odredjenom pacijentu");
 		System.out.println("\t6. Soritiraj po imenu");
+		System.out.println("\t7. Pretraga pacijenta po zadatim bolovima");
 		System.out.println("=======================================================");
 		System.out.println("\t0. IZLAZ");
 	}
-//=============================================================================
-		
-//============================ MENI OPCIJA ====================================	
+	
 	public static void meniPacijentUI() {
 		int odluka = -1;
 		while (odluka != 0) {
@@ -56,16 +55,18 @@ public class PacijentUI {
 			case 6:
 				sortirajPoImenu();
 				break;
+			case 7:
+				pretragaPoBolovima();
 			default:
 				System.out.println("Nepostojeca komanda");
 				break;
 			}
 		}
 	}
-//=============================================================================
 	
-//====================== PRONADJI PACIJENTA PO ID =============================	
+//CRUD Operation
 	
+	//Find patient by ID
 	public static Pacijent findPatient () {
 		System.out.print("Unesite ID pacijenta: ");
 		int idPac = PomocnaKlasa.ocitajCeoBroj();
@@ -81,10 +82,8 @@ public class PacijentUI {
 		}
 		return null;
 	}
-//=============================================================================
 	
-//========================== ISPISI SVE PACIJENTE =============================
-
+	//All patients
 	public static void ispisiSvePacijente() {
 		
 		try {
@@ -111,10 +110,8 @@ public class PacijentUI {
 			ex.printStackTrace();
 		}
 	}
-//=============================================================================
 	
-//========================== UNOS NOVOG PACIJENTA =============================
-	
+	//Create new patient 
 	public static void unosNovogPacijenta() {
 		
 		try {
@@ -149,10 +146,8 @@ public class PacijentUI {
 			ex.printStackTrace();
 		}
 	}
-//=============================================================================
 	
-//======================= IZMENA PODATKA O PACIJENTU ==========================
-	
+	//Update patient 
 	public static void izmenaPodatakaOPacijentu() {
 		Pacijent pacijent = findPatient();
 		
@@ -188,10 +183,8 @@ public class PacijentUI {
 			}
 		}
 	}
-//=============================================================================
 	
-//======================= BRISANJE PODATKA O PACIJENTU ========================
-	
+	//Delete patient 
 	public static void birisanjePodatkaOPacijetnu() {
 		
 		Pacijent pacijent = findPatient();
@@ -208,10 +201,8 @@ public class PacijentUI {
 			}
 		}
 	}
-//=============================================================================
 	
-//======================= SORTIRAJ PACIJENTA PO IMENU =========================
-	
+	//Sort patient by name (Desc&Asc)
 	public static void sortirajPoImenu () {
 		
 		try {
@@ -265,7 +256,32 @@ public class PacijentUI {
 		}
 	}
 	
-	
-//=============================================================================
-
+	//Search patient by Pain
+	public static void pretragaPoBolovima () {
+		System.out.print("Unesite bol pacijenta: ");
+		String str = PomocnaKlasa.ocitajTekst();
+		
+		try {
+			List<Pacijent> pacijenti = PacijentDAO.getByPain(str);
+			
+			System.out.println();
+			System.out.printf("%-10s %-10s %-20s", "ID", "Ime", "Prezime");
+			System.out.println();
+			System.out.println("========== ========== ====================");
+			
+			for (int i = 0; i < pacijenti.size(); i++) {
+				System.out.printf("%-10s %-10s %-20s", 
+								pacijenti.get(i).getId(),
+								pacijenti.get(i).getIme(),
+								pacijenti.get(i).getPrezime());
+				System.out.println();
+			}
+			System.out.println();
+			System.out.println("Ukupan broj pacijenata sa bolom " + str + " je: " + pacijenti.size());
+			System.out.println("---------- ---------- -------------------");
+		}catch (Exception ex) {
+			System.out.println("Greska u radu sa bazom!");
+			ex.printStackTrace();
+		}
+	}
 }
