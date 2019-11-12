@@ -6,7 +6,7 @@ import pomocnaKlasa.PomocnaKlasa;
 public class AppUI {
 
 	public static void main(String[] args) {
-
+ 
 		try {
 			ConnectionManager.open();
 		}catch (Exception ex) {
@@ -16,6 +16,7 @@ public class AppUI {
 			return;
 		}
 		
+// Deklaracija integera
 		int odluka = -1;
 		while (odluka != 0) {
 			AppUI.ispisiTekstOsnovneOpcie();
