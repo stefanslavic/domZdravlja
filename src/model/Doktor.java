@@ -21,11 +21,9 @@ public class Doktor {
 	protected ArrayList<Pregled> listaPregleda = new ArrayList<Pregled>();
 	
 	public Doktor() {
-		super();
 	}
 
 	public Doktor(int id, String ime, String prezime) {
-		super();
 		this.id = id;
 		this.ime = ime;
 		this.prezime = prezime;
@@ -40,7 +38,6 @@ public class Doktor {
 
 	public Doktor(int id, String ime, String prezime, String zvanje, ArrayList<Pacijent> listaPacijenata,
 			ArrayList<Pregled> listaPregleda) {
-		super();
 		this.id = id;
 		this.ime = ime;
 		this.prezime = prezime;
